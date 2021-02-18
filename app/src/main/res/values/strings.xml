@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">SchoolSoft</string>
-    <string name="noAcc">Nu ai cont?</string>
+    <string name="noAcc">Nu aveți cont?</string>
     <string name="emailHint">Introduceți adresa de e-mail</string>
+    <string name="enterAcc">Intrați în cont</string>
     <string name="passHint">Introduceți parola</string>
     <string name="logButtonText">LOGARE</string>
-    <string name="fgtPass">AI UITAT PAROLA?</string>
+    <string name="fgtPass">Ați uitat parola?</string>
     <string name="OR">SAU</string>
     <string name="googleIcon">Google Icon</string>
     <string name="facebookIcon">Facebook Icon</string>
