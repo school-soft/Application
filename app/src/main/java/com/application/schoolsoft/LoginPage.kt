@@ -34,18 +34,8 @@ class LoginPage : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.topText -> {
-                openCreateAccount()
-            }
-            else -> Toast.makeText(applicationContext, "ok", Toast.LENGTH_SHORT).show()
-        }
-        when (v?.id) {
-            R.id.logButton -> {
-                loginEmail()
-            }
-            else -> Toast.makeText(applicationContext, "congrats, you are seeing a very rare error", Toast.LENGTH_SHORT).show()
-        }
+        when (v?.id) { R.id.topText -> { openCreateAccount() }}
+        when (v?.id) { R.id.logButton -> { loginEmail() }}
     }
 
     private fun initViews() {
