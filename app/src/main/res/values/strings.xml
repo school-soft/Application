@@ -5,7 +5,7 @@
     <string name="enterAcc">Intrați în cont</string>
     <string name="passHint">Introduceți parola</string>
     <string name="logButtonText">LOGARE</string>
-    <string name="fgtPass">Ați uitat parola?</string>
+    <string name="fgtPass">Ați uitat parola?</string>pl
     <string name="OR">SAU</string>
     <string name="googleIcon">Google Icon</string>
     <string name="facebookIcon">Facebook Icon</string>
@@ -14,4 +14,6 @@
     <string name="createEmailHint">Introduceți  o adresa de e-mail</string>
     <string name="createPassHint">Introduceți o parolă</string>
     <string name="confirmPass">Confirmați parola introdusă</string>
+    <string name="createAccButton">CREAȚI UN CONT</string>
+    <string name="finishCreation">CREAȚI CONTUL</string>
 </resources>

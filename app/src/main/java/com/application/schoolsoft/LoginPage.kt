@@ -13,11 +13,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+
 class LoginPage : AppCompatActivity(), View.OnClickListener {
-    private lateinit var topText: TextView
     private lateinit var auth: FirebaseAuth
     private lateinit var logButton: Button
     private lateinit var forgotPassword: TextView
+    private lateinit var createButton: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_page)
@@ -26,27 +27,24 @@ class LoginPage : AppCompatActivity(), View.OnClickListener {
         initListeners()
     }
 
-    private fun openCreateAccount() {
-        val intent = Intent(this, CreateAccount::class.java)
-        startActivity(intent)
-    }
-
     override fun onClick(v: View?) {
-        when (v?.id) { R.id.topText -> { openCreateAccount() }}
-        when (v?.id) { R.id.logButton -> { loginEmail() }}
+        when (v?.id) { R.id.createAcc -> { openCreateAccount() }}
+        when (v?.id) { R.id.logButton -> {
+            loginEmail()
+            Toast.makeText(baseContext, "Logare cu succes",
+                    Toast.LENGTH_SHORT).show()
+        }}
     }
-
     private fun initViews() {
-        topText = findViewById(R.id.topText)
         logButton = findViewById(R.id.logButton)
         forgotPassword = findViewById(R.id.forgotPassword)
+        createButton = findViewById(R.id.createAcc)
     }
-
     private fun initListeners() {
-        topText.setOnClickListener(this)
         logButton.setOnClickListener(this)
+        createButton.setOnClickListener(this)
+        forgotPassword.setOnClickListener(this)
     }
-
     private fun loginEmail () {
         val emailTxt = findViewById<View>(R.id.inputEmail) as EditText
         var email = emailTxt.text.toString()
@@ -68,5 +66,9 @@ class LoginPage : AppCompatActivity(), View.OnClickListener {
         } else {
             Toast.makeText(this, "Please fill up the credentials", Toast.LENGTH_SHORT).show()
         }
+    }
+    private fun openCreateAccount() {
+        val intent = Intent(this, CreateAccount::class.java)
+        startActivity(intent)
     }
 }
