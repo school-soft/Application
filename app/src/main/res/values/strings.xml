@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">SchoolSoft</string>
+    <string name="noAcc">Nu aveți cont?</string>
+    <string name="emailHint">Introduceți adresa de e-mail</string>
+    <string name="enterAcc">Intrați în cont</string>
+    <string name="passHint">Introduceți parola</string>
+    <string name="logButtonText">LOGARE</string>
+    <string name="fgtPass">Ați uitat parola?</string>pl
+    <string name="OR">SAU</string>
+    <string name="googleIcon">Google Icon</string>
+    <string name="facebookIcon">Facebook Icon</string>
+    <string name="blankpfp">Blank Profile Picture</string>
+    <string name="createAcc">Creați un cont</string>
+    <string name="createEmailHint">Introduceți  o adresa de e-mail</string>
+    <string name="createPassHint">Introduceți o parolă</string>
+    <string name="confirmPass">Confirmați parola introdusă</string>
+    <string name="createAccButton">CREAȚI UN CONT</string>
+    <string name="finishCreation">CREAȚI CONTUL</string>
+    <string name="forgotPassword">Ați uitat parola?</string>
+    <string name="enterEmail">Introduceți emailul dvs.</string>
+    <string name="sendrecoveryMail">TRIMITE E-MAIL DE RECUPERARE</string>
+    <string name="backtoLogin">INAPOI LA PAGINA DE LOGIN</string>
 </resources>
