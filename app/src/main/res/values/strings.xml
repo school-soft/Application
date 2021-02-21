@@ -16,4 +16,8 @@
     <string name="confirmPass">Confirmați parola introdusă</string>
     <string name="createAccButton">CREAȚI UN CONT</string>
     <string name="finishCreation">CREAȚI CONTUL</string>
+    <string name="forgotPassword">Ați uitat parola?</string>
+    <string name="enterEmail">Introduceți emailul dvs.</string>
+    <string name="sendrecoveryMail">TRIMITE E-MAIL DE RECUPERARE</string>
+    <string name="backtoLogin">INAPOI LA PAGINA DE LOGIN</string>
 </resources>

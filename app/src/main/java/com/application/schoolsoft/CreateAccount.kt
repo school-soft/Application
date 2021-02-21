@@ -4,10 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -16,6 +13,7 @@ import com.google.firebase.ktx.Firebase
 class CreateAccount : AppCompatActivity(), View.OnClickListener {
     private lateinit var auth: FirebaseAuth
     private lateinit var createButton: Button
+    private lateinit var backButton: ImageView
     private lateinit var name: String
     private lateinit var email: String
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,12 +23,33 @@ class CreateAccount : AppCompatActivity(), View.OnClickListener {
         initViews()
         initListeners()
     }
+
     private fun initViews() {
         createButton = findViewById(R.id.createAcc2)
+        backButton = findViewById(R.id.backButton2)
     }
+
     private fun initListeners() {
         createButton.setOnClickListener(this)
+        backButton.setOnClickListener(this)
     }
+
+    override fun onClick(v: View?) {
+        when (v?.id) { R.id.createAcc2 -> {
+            createAccount()
+            val user = auth.currentUser
+            if ( user != null ) {
+                Toast.makeText(baseContext, "Contul a fost creat, logați-vă",
+                        Toast.LENGTH_LONG).show()
+                openLogin()
+            }
+
+        }}
+        when (v?.id) {R.id.backButton2 -> {
+            openLogin()
+        }}
+    }
+
     private fun createAccount() {
         val emailTxt = findViewById<View>(R.id.createEmail) as EditText
         val passwordTxt = findViewById<View>(R.id.createPassword) as EditText
@@ -54,20 +73,10 @@ class CreateAccount : AppCompatActivity(), View.OnClickListener {
                     Toast.LENGTH_LONG).show()
         }
     }
+
     private fun openLogin() {
         val intent = Intent(this, LoginPage::class.java)
         startActivity(intent)
     }
-    override fun onClick(v: View?) {
-        when (v?.id) { R.id.createAcc2 -> {
-            createAccount()
-            val user = auth.currentUser
-            if ( user != null ) {
-                Toast.makeText(baseContext, "Contul a fost creat, logați-vă",
-                        Toast.LENGTH_LONG).show()
-                openLogin()
-            }
 
-        }}
-    }
 }

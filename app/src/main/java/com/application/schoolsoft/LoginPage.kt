@@ -17,8 +17,8 @@ import com.google.firebase.ktx.Firebase
 class LoginPage : AppCompatActivity(), View.OnClickListener {
     private lateinit var auth: FirebaseAuth
     private lateinit var logButton: Button
-    private lateinit var forgotPassword: TextView
     private lateinit var createButton: Button
+    private lateinit var forgotPassword: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_page)
@@ -29,11 +29,8 @@ class LoginPage : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) { R.id.createAcc -> { openCreateAccount() }}
-        when (v?.id) { R.id.logButton -> {
-            loginEmail()
-            Toast.makeText(baseContext, "Logare cu succes",
-                    Toast.LENGTH_SHORT).show()
-        }}
+        when (v?.id) { R.id.logButton -> { loginEmail() }}
+        when (v?.id) { R.id.forgotPassword -> { openForgotPassword() }}
     }
     private fun initViews() {
         logButton = findViewById(R.id.logButton)
@@ -70,5 +67,9 @@ class LoginPage : AppCompatActivity(), View.OnClickListener {
     private fun openCreateAccount() {
         val intent = Intent(this, CreateAccount::class.java)
         startActivity(intent)
+    }
+    private fun openForgotPassword() {
+        val intent = Intent( this, ForgotPassword::class.java)
+        startActivity(intent);
     }
 }
