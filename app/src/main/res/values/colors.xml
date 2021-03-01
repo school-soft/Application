@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="lightRed">#e69081</color>
+    <color name="lightGrey">#f7f7f7</color>
     <color name="lightYellow">#fcdb81</color>
     <color name="medlightGreen">#94f551</color>
     <color name="lightBlueMagenta">#cf81fc</color>
