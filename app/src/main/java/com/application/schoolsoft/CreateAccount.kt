@@ -41,7 +41,7 @@ class CreateAccount : AppCompatActivity(), View.OnClickListener {
             if ( user != null ) {
                 Toast.makeText(baseContext, "Contul a fost creat, logați-vă",
                         Toast.LENGTH_LONG).show()
-                openLogin()
+                openAlegeClasa()
             }
 
         }}
@@ -78,6 +78,12 @@ class CreateAccount : AppCompatActivity(), View.OnClickListener {
         finish()
         /*val intent = Intent(this, LoginPage::class.java)
         startActivity(intent)*/
+    }
+
+    private fun openAlegeClasa() {
+        val intent = Intent(this, AlegeClasa::class.java)
+        startActivity(intent)
+        finish()
     }
 
 }

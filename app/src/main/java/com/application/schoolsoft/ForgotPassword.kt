@@ -41,8 +41,9 @@ class ForgotPassword : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun openLogin() {
-        val intent = Intent(this, LoginPage::class.java)
-        startActivity(intent)
+        finish()
+        /*val intent = Intent(this, LoginPage::class.java)
+        startActivity(intent)*/
     }
 
     private fun resetPassword() {
