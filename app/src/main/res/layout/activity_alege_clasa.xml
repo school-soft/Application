@@ -53,23 +53,26 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/Btn_clasa1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/round_bg_lightblue"
-                android:layout_margin="5dp"
-                android:text="Clasa 1" />
+                android:text="Clasa 1"
+                android:textColor="#FFFFFF" />
 
             <Button
                 android:id="@+id/Btn_clasa2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:background="@drawable/round_bg_lightblue"
-                android:layout_margin="5dp"
-                android:text="Clasa 2" />
+                android:text="Clasa 2"
+                android:textColor="#FFFFFF" />
 
         </LinearLayout>
 
@@ -78,22 +81,26 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal">
-            <Button
-                android:id="@+id/Btn_clasa3"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/round_bg_lightblue"
-                android:layout_margin="5dp"
-                android:text="Clasa 3" />
-            <Button
-                android:id="@+id/Btn_clasa4"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/round_bg_lightblue"
-                android:layout_margin="5dp"
-                android:text="Clasa 4" />
+
+        <Button
+            android:id="@+id/Btn_clasa3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_bg_lightblue"
+            android:text="Clasa 3"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/Btn_clasa4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_bg_lightblue"
+            android:text="Clasa 4"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 
