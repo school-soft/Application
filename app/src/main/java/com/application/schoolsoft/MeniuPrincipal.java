@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.audiofx.BassBoost;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +28,7 @@ public class MeniuPrincipal extends AppCompatActivity {
     private FirebaseFirestore fStore;
     private Button BtnContinua = null;
     private Button BtnCuprins = null;
+    private ImageView BtnSettings = null;
     private ImageView BtnAlegeClasa = null;
 
 
@@ -39,6 +41,7 @@ public class MeniuPrincipal extends AppCompatActivity {
         SetStatusBarColor();
         SetButtonCuprins();
         SetButtonAlegeClasa();
+        SetButtonSettings();
     }
     public void SetButtonCuprins(){
         BtnCuprins = findViewById(R.id.vezi_cuprins_button);
@@ -81,6 +84,16 @@ public class MeniuPrincipal extends AppCompatActivity {
         });
     }
 
+    void SetButtonSettings(){
+        BtnSettings = findViewById(R.id.settings_btn);
+        BtnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenSettings();
+            }
+        });
+    }
+
     public void SetStatusBarColor(){
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();
@@ -98,6 +111,11 @@ public class MeniuPrincipal extends AppCompatActivity {
     }
     private void OpenAlegeClasa(){
         Intent intent = new Intent(this, AlegeClasa.class);
+        startActivity(intent);
+    }
+
+    private void OpenSettings(){
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 }
