@@ -4,8 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -31,6 +34,8 @@ public class AlegeClasa extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alege_clasa);
+        SetStatusBarColor();
+
         mAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
 
@@ -45,7 +50,7 @@ public class AlegeClasa extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SetClasaBazaDeDate(1);
-                OpenMeniuCapitole(1);
+                OpenMeniuPrincipal();
             }
         });
 
@@ -53,7 +58,7 @@ public class AlegeClasa extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SetClasaBazaDeDate(2);
-                OpenMeniuCapitole(2);
+                OpenMeniuPrincipal();
             }
         });
 
@@ -61,7 +66,7 @@ public class AlegeClasa extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SetClasaBazaDeDate(3);
-                OpenMeniuCapitole(3);
+                OpenMeniuPrincipal();
             }
         });
 
@@ -69,7 +74,7 @@ public class AlegeClasa extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SetClasaBazaDeDate(4);
-                OpenMeniuCapitole(4);
+                OpenMeniuPrincipal();
             }
         });
 
@@ -95,10 +100,26 @@ public class AlegeClasa extends AppCompatActivity {
 
     }
 
+    public void SetStatusBarColor(){
+        if (Build.VERSION.SDK_INT >= 21) {
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.lightCyanBlue));
+        }
+
+    }
+
     private void OpenMeniuCapitole(int NrClasa){
         Intent intent = new Intent(this, MeniuCapitole.class);
         intent.putExtra(NUMAR_CLASA,NrClasa);
         startActivity(intent);
+    }
+
+    private void OpenMeniuPrincipal(){
+        Intent intent = new Intent(this, MeniuPrincipal.class);
+        startActivity(intent);
+        finish();
     }
 
 }
