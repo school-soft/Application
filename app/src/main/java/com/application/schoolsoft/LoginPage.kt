@@ -54,7 +54,7 @@ class LoginPage : AppCompatActivity(), View.OnClickListener {
                 if (task.isSuccessful){
                     Log.d("Login", "signInWithEmail:success")
                     val user = auth.currentUser
-                    openAlegeClasa()
+                    openMeniuPrincipal()
                 } else {
                     Log.w("Login","signInWithEmail:failure", task.exception)
                     Toast.makeText(baseContext, "Authentication failed.",
@@ -79,4 +79,11 @@ class LoginPage : AppCompatActivity(), View.OnClickListener {
         startActivity(intent)
         finish()
     }
+
+    private fun openMeniuPrincipal() {
+        val intent = Intent(this, MeniuPrincipal::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 }
