@@ -16,11 +16,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MeniuCapitole extends AppCompatActivity {
+public class MeniuCapitole extends ActivityBase {
     private int NumarClasa;
-    private TextView NumeClasaText;
-    private ImageView BackButton;
-    private RecyclerView CapitoleRecyclerView;
     private ArrayList<String> ArrayCapitole = new ArrayList<>();
 
     @Override
@@ -29,22 +26,30 @@ public class MeniuCapitole extends AppCompatActivity {
         setContentView(R.layout.activity_meniu_capitole);
         SetStatusBarColor();
 
-        NumeClasaText = findViewById(R.id.nume_clasa_text);
-        BackButton = findViewById(R.id.clasa_back_button);
-        BackButton.setOnClickListener(new View.OnClickListener() {
+        CreateBackButton();
+        CreateTitle();
+        SetCapitole();
+        CreateRecyclerViewCapitole();
+    }
+
+    private void CreateTitle(){
+        TextView numeClasaText = findViewById(R.id.nume_clasa_text);
+
+        Intent intent = getIntent();
+        NumarClasa = intent.getIntExtra(AlegeClasa.NUMAR_CLASA, 0);
+
+        numeClasaText.setText("Clasa " + NumarClasa);
+
+    }
+
+    private void CreateBackButton(){
+        ImageView backButton = findViewById(R.id.clasa_back_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
-        Intent intent = getIntent();
-        NumarClasa = intent.getIntExtra(AlegeClasa.NUMAR_CLASA, 0);
-
-        NumeClasaText.setText("Clasa " + NumarClasa);
-
-        SetCapitole();
-        CreateRecyclerViewCapitole();
     }
 
     private void SetCapitole(){
@@ -89,10 +94,10 @@ public class MeniuCapitole extends AppCompatActivity {
 
     private void CreateRecyclerViewCapitole(){
 
-        CapitoleRecyclerView = findViewById(R.id.meniu_capitole_recycler_view);
+        RecyclerView capitoleRecyclerView = findViewById(R.id.meniu_capitole_recycler_view);
 
-        CapitoleRecyclerView.setAdapter(new CapitoleRecyclerViewAdaptor(ArrayCapitole));
-        CapitoleRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        capitoleRecyclerView.setAdapter(new CapitoleRecyclerViewAdaptor(ArrayCapitole));
+        capitoleRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 }
