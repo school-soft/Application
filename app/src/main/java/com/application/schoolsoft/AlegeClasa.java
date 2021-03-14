@@ -20,15 +20,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AlegeClasa extends AppCompatActivity {
+public class AlegeClasa extends ActivityBase {
     public static final String NUMAR_CLASA = "com.application.schoolsoft.NUMAR_CLASA";
-    private static final String KEY_CLASA = "Clasa";
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore fStore;
-    private Button BtnClasa1 = null;
-    private Button BtnClasa2 = null;
-    private Button BtnClasa3 = null;
-    private Button BtnClasa4 = null;
+    public static final String KEY_CLASA = "Clasa";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,69 +31,18 @@ public class AlegeClasa extends AppCompatActivity {
         setContentView(R.layout.activity_alege_clasa);
         SetStatusBarColor();
 
-        mAuth = FirebaseAuth.getInstance();
-        fStore = FirebaseFirestore.getInstance();
+        Button btnClasa1 = findViewById(R.id.Btn_clasa1);
+        Button btnClasa2 = findViewById(R.id.Btn_clasa2);
+        Button BtnClasa3 = findViewById(R.id.Btn_clasa3);
+        Button btnClasa4 = findViewById(R.id.Btn_clasa4);
 
-
-
-        BtnClasa1 = findViewById(R.id.Btn_clasa1);
-        BtnClasa2 = findViewById(R.id.Btn_clasa2);
-        BtnClasa3 = findViewById(R.id.Btn_clasa3);
-        BtnClasa4 = findViewById(R.id.Btn_clasa4);
-
-        BtnClasa1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SetClasaBazaDeDate(1);
-                OpenMeniuPrincipal();
-            }
-        });
-
-        BtnClasa2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SetClasaBazaDeDate(2);
-                OpenMeniuPrincipal();
-            }
-        });
-
-        BtnClasa3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SetClasaBazaDeDate(3);
-                OpenMeniuPrincipal();
-            }
-        });
-
-        BtnClasa4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SetClasaBazaDeDate(4);
-                OpenMeniuPrincipal();
-            }
-        });
+        btnClasa1.setOnClickListener(new AlegeClasaListener(this,1));
+        btnClasa2.setOnClickListener(new AlegeClasaListener(this,2));
+        BtnClasa3.setOnClickListener(new AlegeClasaListener(this,3));
+        btnClasa4.setOnClickListener(new AlegeClasaListener(this,4));
 
     }
 
-    private void SetClasaBazaDeDate(int NrClasa){
-        String UserID;
-        UserID = mAuth.getUid();
-        Map<String, Object> Data = new HashMap<>();
-        Data.put(KEY_CLASA,NrClasa);
-        fStore.collection("Users").document(UserID).set(Data).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(AlegeClasa.this, "Added clasa to firestore", Toast.LENGTH_SHORT).show();
-                }
-                else{
-
-                    Toast.makeText(AlegeClasa.this, "Failed to add clasa to firestore", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-    }
 
     public void SetStatusBarColor(){
         if (Build.VERSION.SDK_INT >= 21) {
@@ -116,10 +60,5 @@ public class AlegeClasa extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void OpenMeniuPrincipal(){
-        Intent intent = new Intent(this, MeniuPrincipal.class);
-        startActivity(intent);
-        finish();
-    }
 
 }
