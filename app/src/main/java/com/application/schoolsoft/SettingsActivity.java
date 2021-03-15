@@ -39,11 +39,12 @@ public class SettingsActivity extends ActivityBase implements DeleteAccountDialo
     }
     private void CreateLogOutButton(){
         TextView logOutBtn = findViewById(R.id.log_out_btn);
+        ActivityBase activity = this;
         logOutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mAuth.signOut();
-                OpenLogin();
+                ActivityFactory.openLoginfromSettings(activity);
             }
         });
     }
@@ -75,12 +76,13 @@ public class SettingsActivity extends ActivityBase implements DeleteAccountDialo
                 }
             }
         });
+        ActivityBase activity = this;
         user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(SettingsActivity.this, "Account deleted succesfuly", Toast.LENGTH_SHORT).show();
-                    OpenLogin();
+                    ActivityFactory.openLoginfromSettings(activity);
                 }
                 else{
                     Toast.makeText(SettingsActivity.this, "Error occured while deleting the account", Toast.LENGTH_SHORT).show();
@@ -90,10 +92,5 @@ public class SettingsActivity extends ActivityBase implements DeleteAccountDialo
         });
     }
 
-    private void OpenLogin(){
-        Intent intent = new Intent(this, LoginPage.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-    }
 
 }
