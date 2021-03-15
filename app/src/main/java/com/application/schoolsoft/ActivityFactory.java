@@ -24,4 +24,10 @@ public class ActivityFactory {
         activity.finish();
     }
 
+    public static void openLoginfromSettings(ActivityBase activity){
+        Intent intent = new Intent(activity, LoginPage.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        activity.startActivity(intent);
+    }
+
 }
