@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.ktx.Firebase;
 
-public class SettingsActivity extends ActivityBase {
+public class SettingsActivity extends ActivityBase implements DeleteAccountDialog.DeleteAccountDialogListner{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,22 +53,25 @@ public class SettingsActivity extends ActivityBase {
         DeleteAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DeleteAccount();
-                OpenLogin();
+                DeleteAccountDialog deleteAccountDialog = new DeleteAccountDialog();
+                deleteAccountDialog.show(getSupportFragmentManager(),"delete account dialog");
             }
         });
     }
-    private void DeleteAccount(){
+
+
+    @Override
+    public void DeleteAccount() {
         FirebaseUser user = mAuth.getCurrentUser();
         String UserID = mAuth.getUid();
         fStore.collection("Users").document(UserID).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(SettingsActivity.this, "document deleted succesfuly", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SettingsActivity.this, "document deleted succesfuly", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(SettingsActivity.this, "Error occured while deleting the document", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SettingsActivity.this, "Error occured while deleting the document", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -77,6 +80,7 @@ public class SettingsActivity extends ActivityBase {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(SettingsActivity.this, "Account deleted succesfuly", Toast.LENGTH_SHORT).show();
+                    OpenLogin();
                 }
                 else{
                     Toast.makeText(SettingsActivity.this, "Error occured while deleting the account", Toast.LENGTH_SHORT).show();
@@ -85,7 +89,6 @@ public class SettingsActivity extends ActivityBase {
             }
         });
     }
-
 
     private void OpenLogin(){
         Intent intent = new Intent(this, LoginPage.class);

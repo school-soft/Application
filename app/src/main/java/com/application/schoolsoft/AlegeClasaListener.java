@@ -9,6 +9,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +36,7 @@ public class AlegeClasaListener implements View.OnClickListener{
         UserID = mAuth.getUid();
         Map<String, Object> Data = new HashMap<>();
         Data.put(AlegeClasa.KEY_CLASA,NrClasa);
-        fStore.collection("Users").document(UserID).set(Data).addOnCompleteListener(new OnCompleteListener<Void>() {
+        fStore.collection("Users").document(UserID).set(Data, SetOptions.merge()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
