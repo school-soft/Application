@@ -14,7 +14,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 
-class LoginPage : AppCompatActivity(), View.OnClickListener {
+class LoginPage : ActivityBase(), View.OnClickListener {
     private lateinit var auth: FirebaseAuth
     private lateinit var logButton: Button
     private lateinit var createButton: Button
