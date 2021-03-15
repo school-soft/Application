@@ -53,7 +53,6 @@ class LoginPage : AppCompatActivity(), View.OnClickListener {
                 addOnCompleteListener (this) { task ->
                 if (task.isSuccessful){
                     Log.d("Login", "signInWithEmail:success")
-                    val user = auth.currentUser
                     openMeniuPrincipal()
                 } else {
                     Log.w("Login","signInWithEmail:failure", task.exception)
