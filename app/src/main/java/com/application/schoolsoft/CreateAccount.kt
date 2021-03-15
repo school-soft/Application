@@ -12,7 +12,7 @@ import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class CreateAccount : AppCompatActivity(), View.OnClickListener {
+class CreateAccount : ActivityBase(), View.OnClickListener {
     private lateinit var auth: FirebaseAuth
     private lateinit var createButton: Button
     private lateinit var backButton: ImageView
