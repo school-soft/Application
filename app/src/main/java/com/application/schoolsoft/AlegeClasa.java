@@ -54,11 +54,4 @@ public class AlegeClasa extends ActivityBase {
 
     }
 
-    private void OpenMeniuCapitole(int NrClasa){
-        Intent intent = new Intent(this, MeniuCapitole.class);
-        intent.putExtra(NUMAR_CLASA,NrClasa);
-        startActivity(intent);
-    }
-
-
 }
