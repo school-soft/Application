@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.audiofx.BassBoost;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,13 +21,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class MeniuPrincipal extends AppCompatActivity {
+public class MeniuPrincipal extends ActivityBase {
     public static final String NUMAR_CLASA = "com.application.schoolsoft.NUMAR_CLASA";
     private static final String KEY_CLASA = "Clasa";
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore fStore;
+
     private Button BtnContinua = null;
     private Button BtnCuprins = null;
+    private ImageView BtnSettings = null;
     private ImageView BtnAlegeClasa = null;
 
 
@@ -34,11 +35,10 @@ public class MeniuPrincipal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meniu_principal);
-        mAuth = FirebaseAuth.getInstance();
-        fStore = FirebaseFirestore.getInstance();
         SetStatusBarColor();
         SetButtonCuprins();
         SetButtonAlegeClasa();
+        SetButtonSettings();
     }
     public void SetButtonCuprins(){
         BtnCuprins = findViewById(R.id.vezi_cuprins_button);
@@ -81,6 +81,16 @@ public class MeniuPrincipal extends AppCompatActivity {
         });
     }
 
+    void SetButtonSettings(){
+        BtnSettings = findViewById(R.id.settings_btn);
+        BtnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OpenSettings();
+            }
+        });
+    }
+
     public void SetStatusBarColor(){
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();
@@ -96,8 +106,14 @@ public class MeniuPrincipal extends AppCompatActivity {
         intent.putExtra(NUMAR_CLASA,NrClasa);
         startActivity(intent);
     }
+
     private void OpenAlegeClasa(){
         Intent intent = new Intent(this, AlegeClasa.class);
+        startActivity(intent);
+    }
+
+    private void OpenSettings(){
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 }
