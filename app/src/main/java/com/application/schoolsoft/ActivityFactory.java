@@ -15,7 +15,6 @@ public class ActivityFactory {
     public static void openSettings(ActivityBase activity){
         Intent intent = new Intent(activity, SettingsActivity.class);
         activity.startActivity(intent);
-        activity.finish();
     }
 
     public static void openLogin(ActivityBase activity){

@@ -13,6 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,11 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class MeniuPrincipal extends ActivityBase {
     public static final String NUMAR_CLASA = "com.application.schoolsoft.NUMAR_CLASA";
     private static final String KEY_CLASA = "Clasa";
-
-    private Button BtnContinua = null;
-    private Button BtnCuprins = null;
-    private ImageView BtnSettings = null;
-    private ImageView BtnAlegeClasa = null;
+    private static final String KEY_USER = "Username";
 
 
     @Override
@@ -39,10 +36,36 @@ public class MeniuPrincipal extends ActivityBase {
         SetButtonCuprins();
         SetButtonAlegeClasa();
         SetButtonSettings();
+        SetWelcomeText();
     }
-    public void SetButtonCuprins(){
-        BtnCuprins = findViewById(R.id.vezi_cuprins_button);
-        BtnCuprins.setOnClickListener(new View.OnClickListener() {
+
+    private void SetWelcomeText(){
+        TextView WelcomeText = findViewById(R.id.welcome_text_view);
+        String UserID = mAuth.getUid();
+        fStore.collection("Users").document(UserID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document = task.getResult();
+                    if(document.exists()){
+                        String NumeUser = document.getString(KEY_USER);
+                        WelcomeText.setText("Bun Venit  " + NumeUser);
+                    }
+                    else{
+                        Toast.makeText(MeniuPrincipal.this, "Error", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                else{
+                    Toast.makeText(MeniuPrincipal.this, "Error", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void SetButtonCuprins(){
+        Button btnCuprins = findViewById(R.id.vezi_cuprins_button);
+        btnCuprins.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String UserID = mAuth.getUid();
@@ -72,8 +95,8 @@ public class MeniuPrincipal extends ActivityBase {
     }
 
     void SetButtonAlegeClasa(){
-        BtnAlegeClasa = findViewById(R.id.alege_clasa_btn);
-        BtnAlegeClasa.setOnClickListener(new View.OnClickListener() {
+        ImageView btnAlegeClasa = findViewById(R.id.alege_clasa_btn);
+        btnAlegeClasa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 OpenAlegeClasa();
@@ -82,11 +105,12 @@ public class MeniuPrincipal extends ActivityBase {
     }
 
     void SetButtonSettings(){
-        BtnSettings = findViewById(R.id.settings_btn);
-        BtnSettings.setOnClickListener(new View.OnClickListener() {
+        ImageView btnSettings = findViewById(R.id.settings_btn);
+        ActivityBase activity = this;
+        btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OpenSettings();
+                ActivityFactory.openSettings(activity);
             }
         });
     }
@@ -109,11 +133,6 @@ public class MeniuPrincipal extends ActivityBase {
 
     private void OpenAlegeClasa(){
         Intent intent = new Intent(this, AlegeClasa.class);
-        startActivity(intent);
-    }
-
-    private void OpenSettings(){
-        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 }
