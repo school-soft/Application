@@ -1,14 +1,12 @@
 package com.application.schoolsoft;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-public class WelcomePage extends AppCompatActivity {
+public class ActivitateExercitii extends ActivityBase {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome_page);
+        setContentView(R.layout.activitate_exercitii);
     }
 }
