@@ -109,11 +109,11 @@
 
     <View
         android:id="@+id/blue_wave_bottom2"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="500dp"
         android:background="@drawable/ic_wave_diagonal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guidelinecenter"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vezi_cuprins_button"
@@ -123,6 +123,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guidelinecenter"
-        app:layout_constraintGuide_percent="0.5"
+        app:layout_constraintGuide_percent="0.7"
         android:orientation="vertical"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
