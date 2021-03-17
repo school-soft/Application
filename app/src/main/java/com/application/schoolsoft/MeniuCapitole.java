@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MeniuCapitole extends ActivityBase {
+public class MeniuCapitole extends ActivityBase implements CapitoleRecyclerViewAdaptor.OnCapitolListner {
     private int NumarClasa;
     private ArrayList<String> ArrayCapitole = new ArrayList<>();
 
@@ -96,8 +96,13 @@ public class MeniuCapitole extends ActivityBase {
 
         RecyclerView capitoleRecyclerView = findViewById(R.id.meniu_capitole_recycler_view);
 
-        capitoleRecyclerView.setAdapter(new CapitoleRecyclerViewAdaptor(ArrayCapitole));
+        capitoleRecyclerView.setAdapter(new CapitoleRecyclerViewAdaptor(ArrayCapitole,this));
         capitoleRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+    }
+
+    @Override
+    public void onCapitolListner(int position) {
+        ActivityFactory.openActivitateExercitii(this);
     }
 }

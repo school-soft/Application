@@ -12,16 +12,18 @@ import java.util.ArrayList;
 
 public class CapitoleRecyclerViewAdaptor extends RecyclerView.Adapter<CapitoleRecyclerViewAdaptor.CapitoleViewHolder> {
     private ArrayList<String> mArrayCapitole;
+    private OnCapitolListner mOnCapitolListner;
 
-    public CapitoleRecyclerViewAdaptor(ArrayList<String> arraycapitole){
-        mArrayCapitole = arraycapitole;
+    public CapitoleRecyclerViewAdaptor(ArrayList<String> arraycapitole, OnCapitolListner onCapitolListner){
+        this.mArrayCapitole = arraycapitole;
+        this.mOnCapitolListner = onCapitolListner;
     }
 
     @NonNull
     @Override
     public CapitoleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.capitol_card_view, parent , false);
-        return new CapitoleViewHolder(view);
+        return new CapitoleViewHolder(view,mOnCapitolListner);
     }
 
     @Override
@@ -34,14 +36,28 @@ public class CapitoleRecyclerViewAdaptor extends RecyclerView.Adapter<CapitoleRe
         return mArrayCapitole.size();
     }
 
-    public static class CapitoleViewHolder extends RecyclerView.ViewHolder {
+    public static class CapitoleViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView NumeCapitol;
+        OnCapitolListner onCapitolListner;
 
-        public CapitoleViewHolder(@NonNull View itemView) {
+        public CapitoleViewHolder(@NonNull View itemView ,OnCapitolListner onCapitolListner) {
             super(itemView);
 
             NumeCapitol = itemView.findViewById(R.id.nume_capitol_text_view);
+            this.onCapitolListner = onCapitolListner;
+
+            itemView.setOnClickListener(this);
+
         }
+
+        @Override
+        public void onClick(View v) {
+            onCapitolListner.onCapitolListner(getAdapterPosition());
+        }
+    }
+
+    public interface OnCapitolListner {
+        void onCapitolListner(int position);
     }
 
 }

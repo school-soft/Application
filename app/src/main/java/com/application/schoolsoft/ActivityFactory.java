@@ -15,7 +15,6 @@ public class ActivityFactory {
     public static void openSettings(ActivityBase activity){
         Intent intent = new Intent(activity, SettingsActivity.class);
         activity.startActivity(intent);
-        activity.finish();
     }
 
     public static void openLogin(ActivityBase activity){
@@ -30,4 +29,8 @@ public class ActivityFactory {
         activity.startActivity(intent);
     }
 
+    public static  void openActivitateExercitii(ActivityBase activity){
+        Intent intent = new Intent(activity, ActivitateExercitii.class);
+        activity.startActivity(intent);
+    }
 }

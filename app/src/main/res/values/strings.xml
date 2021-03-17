@@ -20,4 +20,6 @@
     <string name="enterEmail">Introduceți emailul dvs.</string>
     <string name="sendrecoveryMail">TRIMITE E-MAIL DE RECUPERARE</string>
     <string name="backtoLogin">INAPOI LA PAGINA DE LOGIN</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
